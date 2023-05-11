@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Container, Grid, Button } from '@mui/material';
+import {
+    Container,
+    Grid,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+} from '@mui/material';
 
 function getRandomColor() {
     // 16진수로 표현된 RGB 색상 중에서 랜덤으로 선택합니다.
@@ -73,10 +81,53 @@ function Counter() {
     );
 }
 
+function Counter2() {
+    const [open, setOpen] = useState(false);
+    return (
+        <div style={{ border: '10px solid black', padding: 20 }}>
+            <h1>Counter - Dialog💬</h1>
+            <Button
+                variant="contained"
+                onClick={() => {
+                    setOpen(true);
+                }}
+            >
+                Run
+            </Button>
+
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                {/* Dialog의 onClose prop를 활용하여 esc키나 외부화면 클릭 시 창 닫기 */}
+                <DialogTitle style={{ backgroundColor: 'tomato' }}>
+                    Dialog Count
+                </DialogTitle>
+                <DialogContent>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dolore voluptates enim quia omnis, maiores cumque aliquam
+                    tenetur architecto! Eum corporis autem voluptatem id dicta?
+                    Voluptatum, fugiat. Accusamus repellat iure corporis.
+                    <Button>+</Button> 👉 0
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        variant="outlined"
+                        onClick={() => {
+                            setOpen(false);
+                        }}
+                    >
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
+}
 function App() {
     return (
         <Container>
             <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Counter2 />
+                </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                     <Counter />
                 </Grid>
