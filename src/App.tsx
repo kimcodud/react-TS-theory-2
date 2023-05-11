@@ -30,7 +30,10 @@ function Counter() {
             >
                 +
             </button>{' '}
-            👉 0
+            👉{' '}
+            {count.reduce((누적값, 현재값) => {
+                return 누적값 + 현재값.step;
+            }, 0)}
             <table>
                 <thead>
                     <tr>
