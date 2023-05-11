@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Container } from '@mui/material';
 
 type countItemType = {
     time: string;
@@ -58,9 +59,9 @@ function Counter() {
 
 function App() {
     return (
-        <div>
+        <Container>
             <Counter />
-        </div>
+        </Container>
     );
 }
 
