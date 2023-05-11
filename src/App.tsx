@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Button } from '@mui/material';
 
 function getRandomColor() {
     // 16진수로 표현된 RGB 색상 중에서 랜덤으로 선택합니다.
@@ -34,7 +34,8 @@ function Counter() {
                     setStep(Number(evt.target.value));
                 }}
             />
-            <button
+            <Button
+                variant="contained"
                 onClick={() => {
                     const newCountItem: countItemType = {
                         time: new Date().toLocaleTimeString(),
@@ -45,7 +46,7 @@ function Counter() {
                 }}
             >
                 +
-            </button>{' '}
+            </Button>
             👉{' '}
             {count.reduce((누적값, 현재값) => {
                 return 누적값 + 현재값.step;
