@@ -21,6 +21,9 @@ function Counter() {
             style={{
                 border: '10px solid' + getRandomColor(),
                 padding: 20,
+                backgroundColor: getRandomColor(),
+                color: getRandomColor(),
+                boxShadow: '5px 5px 5px #888888',
             }}
         >
             <h1>📟 Counter</h1>
