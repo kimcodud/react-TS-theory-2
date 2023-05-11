@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 function getRandomColor() {
     // 16진수로 표현된 RGB 색상 중에서 랜덤으로 선택합니다.
@@ -72,11 +72,17 @@ function Counter() {
 function App() {
     return (
         <Container>
-            <Counter />
-            <Counter />
-            <Counter />
-            <Counter />
-            <Counter />
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Counter />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Counter />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Counter />
+                </Grid>
+            </Grid>
         </Container>
     );
 }
