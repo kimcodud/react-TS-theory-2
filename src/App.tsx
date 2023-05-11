@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {
     Container,
@@ -121,10 +121,52 @@ function Counter2() {
         </div>
     );
 }
+
+//서버에서 데이터 가져와서 그 값을 {count}에 세팅하는 카운터
+function Counter3() {
+    const [count, setCount] = useState(0);
+    //fetch from http://localhost:9999/counter
+
+    //useEffect의 두번째 인자에 [] 주면 서버가 마운트 될때 fetch가 한번만 실행되도록 할 수 있음
+    useEffect(() => {
+        fetch('http://localhost:9999/counter')
+            .then((resp) => resp.json())
+            .then((result) => {
+                console.log(result);
+                setCount(result.value);
+            });
+    }, []);
+    return (
+        <div style={{ border: '10px solid gray', padding: 20 }}>
+            <h1>Counter - Ajax & useEffect</h1>
+            <button
+                onClick={() => {
+                    fetch('http://localhost:9999/counter', {
+                        method: 'PATCH',
+                        body: JSON.stringify({ value: count + 1 }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                        .then((resp) => resp.json())
+                        .then((result) => {
+                            setCount(result.value);
+                        });
+                }}
+            >
+                +
+            </button>{' '}
+            {count}
+        </div>
+    );
+}
 function App() {
     return (
         <Container>
             <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={4}>
+                    <Counter3 />
+                </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                     <Counter2 />
                 </Grid>
