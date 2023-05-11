@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function Counter() {
+    const [step, setStep] = useState(1);
     return (
         <div>
             <h1>Counter</h1>
+            <input
+                type="number"
+                value={step}
+                onChange={(evt) => {
+                    setStep(Number(evt.target.value));
+                }}
+            />
             <button>+</button> 👉 0
             <table>
                 <thead>
@@ -15,8 +23,8 @@ function Counter() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>1:00</td>
+                        <td>2</td>
                     </tr>
                 </tbody>
             </table>
