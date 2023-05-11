@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { Container } from '@mui/material';
 
+function getRandomColor() {
+    // 16진수로 표현된 RGB 색상 중에서 랜덤으로 선택합니다.
+    const color = Math.floor(Math.random() * 16777215).toString(16);
+    // 선택된 색상을 리턴합니다.
+    return '#' + color;
+}
+
 type countItemType = {
     time: string;
     step: number;
@@ -10,7 +17,12 @@ function Counter() {
     const [step, setStep] = useState(1);
     const [count, setCount] = useState<countItemType[]>([]);
     return (
-        <div>
+        <div
+            style={{
+                border: '10px solid' + getRandomColor(),
+                padding: 20,
+            }}
+        >
             <h1>📟 Counter</h1>
             <input
                 type="number"
@@ -45,7 +57,7 @@ function Counter() {
                 <tbody>
                     {count.map((value, index) => {
                         return (
-                            <tr>
+                            <tr key={index}>
                                 <td>{value.time}</td>
                                 <td>{value.step}</td>
                             </tr>
@@ -60,6 +72,10 @@ function Counter() {
 function App() {
     return (
         <Container>
+            <Counter />
+            <Counter />
+            <Counter />
+            <Counter />
             <Counter />
         </Container>
     );
